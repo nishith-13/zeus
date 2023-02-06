@@ -1,0 +1,221 @@
+@font-face {
+    font-family: "Quicksand";
+    src: url("Assets/Quicksand\ font\ 1/static/Quicksand-Bold.ttf")
+      format("truetype");
+    font-weight: bold;
+  }
+  
+  @font-face {
+    font-family: "Quicksand";
+    src: url("Assets/Quicksand\ font\ 1/static/Quicksand-Light.ttf")
+      format("truetype");
+    font-weight: light;
+  }
+  
+  @font-face {
+    font-family: "Quicksand";
+    src: url("Assets/Quicksand\ font\ 1/static/Quicksand-Medium.ttf")
+      format("truetype");
+    font-weight: medium;
+  }
+  
+  @font-face {
+    font-family: "Quicksand";
+    src: url("Assets/Quicksand\ font\ 1/static/Quicksand-Regular.ttf")
+      format("truetype");
+    font-weight: normal;
+  }
+  
+  @font-face {
+    font-family: "Quicksand";
+    src: url("Assets/Quicksand\ font\ 1/static/Quicksand-SemiBold.ttf")
+      format("truetype");
+    font-weight: 600;
+  }
+  
+body{
+    margin: 0;
+    background-color: #EEEEEE;
+    font-family: Quicksand;
+    font: normal normal medium 24px/28px Quicksand;
+}
+header{
+    background: url(./Assets/header\ pattern\ image.png);
+    background-color: #25313F;
+    background-blend-mode: multiply;
+    display: flex;
+    justify-content: space-between;
+}
+.navbaar .badge{
+  letter-spacing: -0.5px;
+  border-radius: 100%;
+  background-color: #2A7FF3;
+  width: 17px;
+  display: block;
+  color: white;
+  position: absolute;
+  top: 8px;
+  transform: translateX(10px);
+}
+.logo_header{
+  padding: 0.5rem;
+}
+.navbaar{
+  display: grid;
+  grid-template-columns: repeat(8,0.2fr);
+  gap: 32px;
+  align-items: center;
+  margin-right: 1.7rem;
+}
+.navbaar .selected{
+  color: #EEEEEE;
+  border-bottom: 2px solid #EEEEEE;
+}
+a:-webkit-any-link {
+  text-align: center;
+  letter-spacing: 0.7px;
+  color: #3FD28B;
+  text-decoration: none;
+  height: max-content;
+}
+.toggle_category{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  align-items: center;
+  justify-items: center;
+  margin: 24px;
+  background-color: #8DDC97;
+  border-radius: 2px;
+}
+.hamburger{
+  display: none;
+}
+.toggle_category > div{
+  display: flex;
+  align-items: center;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  width: 100%;
+  justify-content: center;
+}
+.toggle_category .courses {
+  border-bottom: 4px solid #222222;
+}
+.info_filter{
+  display: flex;
+  justify-content: space-between;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+.info_filter > p{
+  color: #686868;
+  font-size: 12px;
+  font-weight: medium;
+}
+.info_filter >p > span {
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(0,0,0,0.12);
+    color: #222222;
+    font-size: 16px;
+}
+hr{
+  color: #000000;
+  opacity: 0.12;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+.card_grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  grid-gap: 24px;
+  padding: 0px 24px;
+}
+.card{
+  background-color: #FFFFFF;
+  padding: 24px 0px;
+  /* margin: 24px 0px 0px 24px; */
+}
+.card_grid .card_upper{
+  display: grid;
+  grid-template-columns: 25% 70%;
+  padding: 0px 24px;
+}
+.card_upper_right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 42px;
+}
+.text-muted{
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: #666666;
+}
+.dropdown{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #000000;
+}
+.dropdown >p{
+  margin: 0;
+}
+.card_heading{
+  display: flex;
+  justify-content: space-between;
+}
+.card_heading >h3{
+  margin: 0;
+  font-size: 16px;
+  font-weight: medium;
+}
+.card_grid .card_footer {
+  display: flex;
+  justify-content: space-evenly;
+}
+.lower_footer{
+    background-color: #E0E1E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #616161;
+    
+}
+.upper_footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #1F7A54;
+    font-weight: 600;
+}
+footer{
+  margin-top: 32px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .card_grid{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: 25% 25%;
+    grid-gap: 24px;
+    padding: 0px 24px;
+    margin-bottom: 24px;
+  }
+  .desktop_only{
+    display: none;
+  }
+  .hamburger{
+    display: unset;
+  }
+  .navbaar{
+    grid-template-columns: repeat(4,0.2fr);
+  }
+  footer{
+    padding-top:32px;
+  }
+}

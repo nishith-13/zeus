@@ -1,0 +1,225 @@
+@import "./quicksandfont";
+
+body {
+  margin: 0;
+  background-color: #eeeeee;
+  font-family: Quicksand;
+  font: normal normal medium 24px/28px Quicksand;
+}
+header {
+  background: url(./Assets/header\ pattern\ image.png);
+  background-color: #25313f;
+  background-blend-mode: multiply;
+  display: flex;
+  justify-content: space-between;
+  .logo_header {
+    padding: 0.5rem;
+  }
+}
+
+.navbaar {
+  display: grid;
+  grid-template-columns: repeat(8, 0.2fr);
+  gap: 2rem;
+  align-items: center;
+  margin-right: 1.7rem;
+  .badge {
+    letter-spacing: -0.5px;
+    border-radius: 100%;
+    background-color: #2a7ff3;
+    width: 17px;
+    display: block;
+    color: white;
+    position: absolute;
+    top: 8px;
+    transform: translateX(10px);
+  }
+
+  .selected {
+    color: #eeeeee;
+    border-bottom: 2px solid #eeeeee;
+  }
+  .hamburger {
+    display: none;
+  }
+}
+
+a:-webkit-any-link {
+  text-align: center;
+  letter-spacing: 0.7px;
+  color: #3fd28b;
+  text-decoration: none;
+  height: max-content;
+}
+
+.toggle_category {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+  margin: 24px;
+  background-color: #8ddc97;
+  border-radius: 2px;
+  > div {
+    display: flex;
+    align-items: center;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .courses {
+    border-bottom: 4px solid #222222;
+  }
+}
+
+.info_filter {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 24px;
+  margin-right: 24px;
+  p {
+    color: #686868;
+    font-size: 12px;
+    font-weight: medium;
+    span {
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 1px solid rgb(0, 0, 0, 0.12);
+      color: #222222;
+      font-size: 16px;
+    }
+  }
+}
+
+hr {
+  color: #000000;
+  opacity: 0.12;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 24px 0px;
+  .card_heading {
+    display: flex;
+    justify-content: space-between;
+    > h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: medium;
+    }
+    .favourite {
+      background-color: #edc900;
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+      width: 20px;
+      height: 24px;
+    }
+  }
+}
+.card_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 24px;
+  padding: 0px 24px;
+  .card_footer {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .card_upper {
+    display: grid;
+    grid-template-columns: 25% 70%;
+    padding: 0px 24px;
+    .card_upper_right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 42px;
+    }
+  }
+}
+
+.text-muted {
+  font-size: 12px;
+  letter-spacing: 0px;
+  color: #666666;
+}
+
+select {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  appearance: none;
+  background-image: url("Assets/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: 100%;
+  border-bottom: 2px solid #000000;
+  width: 95%;
+  padding: 2px auto 3px 0;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: medium;
+  letter-spacing: 0px;
+}
+> p {
+  margin: 0;
+}
+
+footer {
+  margin-top: 32px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  .lower_footer {
+    background-color: #e0e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #616161;
+  }
+  .upper_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #1f7a54;
+    font-weight: 600;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card_grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 25% 25%;
+    grid-gap: 24px;
+    padding: 0px 24px;
+    margin-bottom: 24px;
+  }
+  .desktop_only {
+    display: none;
+  }
+  .navbaar {
+    .hamburger {
+      display: unset;
+    }
+  }
+  .navbaar {
+    grid-template-columns: repeat(4, 0.2fr);
+  }
+  footer {
+    padding-top: 32px;
+  }
+}

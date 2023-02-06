@@ -1,0 +1,33 @@
+body{
+    background-color: lightpink;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1{
+    background-color: darkred;
+    border-bottom: 5px solid red;
+    letter-spacing: 1em;
+    font-style: italic;
+    text-align: center;
+    color: #fff;
+}
+h2{
+    color: #fff;
+    background-color: green;
+}
+ul{
+    color: brown;
+    font-style: italic;
+}
+a{
+    text-decoration: none;
+}
+h3{
+    color: gray;
+}
+table{
+    background-color: grey;
+}
+img{
+    border: 2px dotted grey;
+    background-color: #fff;
+}

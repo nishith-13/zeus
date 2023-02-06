@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Fonts Pre Connect -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fonts Links (Roboto 400, 500 and 700 included) -->
+
+    <!-- CSS Files Links -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Title -->
+    <title>Quantum Dashboard</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+        <img class="logo_header" src="./Assets/logo used in header.svg" />
+      </div>
+      <div class="navbaar">
+        <a href="#" class="selected desktop_only">DASHBOARD </a>
+        <a href="#" class="desktop-only">Content </a>
+        <a href="#" class="desktop_only">USERS </a>
+        <a href="#" class="desktop_only">REPORTS </a>
+        <a href="#" class="desktop_only"> ADMIN </a>
+        <a href="#"
+          ><img src="./Assets/alerts.svg" /><span class="badge">2</span></a
+        >
+        <a href="#"
+          ><img src="./Assets/announcements.svg" /><span class="badge"
+            >1</span
+          ></a
+        >
+        <a href="#"
+          ><img src="./Assets/account_circle.svg" /><span class="badge"
+            >T</span
+          ></a
+        >
+        <a href="#" class="hamburger"
+          ><img src="./Assets/hamburger-menu.svg"
+        /></a>
+      </div>
+    </header>
+
+    <main>
+      <div class="toggle_category">
+        <div class="courses"><img src="./Assets/courses.svg" />Courses</div>
+        <div class="classes"><img src="./Assets/classes.svg" />Classes</div>
+      </div>
+      <div class="info_filter">
+        <p>Showing 4 of 4 courses</p>
+        <p>
+          Sort By:
+          <span> Course Name <img src="./Assets/arrow-down.svg" /> </span>
+          <img src="./Assets/sort.svg" />
+        </p>
+      </div>
+      <hr />
+      <div class="card_grid" id="card_grid">
+        <script type="text/javascript" src="dashboard.js"></script>
+      </div>
+    </main>
+
+    <footer>
+      <div class="upper_footer">
+        <a>About </a>
+        <span>&nbsp;|&nbsp;</span>
+        <a> Contact Us</a>
+      </div>
+      <div class="lower_footer">
+        <img src="/Assets/logo used in footer.svg" />
+        <div class="text-muted">&nbsp;|&nbsp;</div>
+        <small>
+          Copyright © 2020-2021 <strong>Zeus Systems Pvt. Ltd.</strong> All
+          rights reserved.</small
+        >
+      </div>
+    </footer>
+
+    <noscript>Your browser don't support JavaScript!</noscript>
+    <script src="./scripts.js"></script>
+  </body>
+</html>
