@@ -1,65 +1,12 @@
+fetch('./dashboard.json')
+    .then((response) => response.json())
+    .then((json) => process(json));
 
-const jsonDataArray = [{
-    "image" : "./Assets/imageMask-1.png",
-    "Title" : "Acceleration",
-    "Subject" : "Physics",
-    "Grade" : 7,
-    "Units":4,
-    "Lessons":18,
-    "Topics" : 24,
-    "Teacher" : "Mr.Frank's Class B",
-    "Students" : 50 ,
-    "Start" : "21-Jan-2021",
-    "End": "21-Aug-2021",
-    'starimage' : "./Assets/favourite.svg"
-},{
-    "image" : "./Assets/imageMask.png",
-    "Title" : "Displacement, Velocity and Speed",
-    "Subject" : "Physics",
-    "Grade" : 6,
-    "Units":2,
-    "Lessons":15,
-    "Topics" : 20,
-    "Teacher" : "No Classes",
-    "Students" : 40 ,
-    "Start" : "21-Feb-2021",
-    "End": "21-Sep-2021" ,
-    'starimage' : "./Assets/favourite.svg"
-},{
-    "image" : "./Assets/imageMask-2.png",
-    "Title" : "Introduction to Biology: Micro organisms and how they affec...",
-    "Subject" : "Biology",
-    "Grade" : 4,
-    "Units":5,
-    "Lessons":16,
-    "Topics" : 24,
-    "Teacher" : "All Classes",
-    "Students" : 300 ,
-    "Start" : "",
-    "End": "" ,
-    'starimage' : "./Assets/favourite.svg"
-},{
-    "image" : "./Assets/imageMask-3.png",
-    "Title" : "Introduction to High School Mathematics",
-    "Subject" : "Mathematics",
-    "Grade" : 8,
-    "Units":4,
-    "Lessons":18,
-    "Topics" : 24,
-    "Teacher" : "Mr. Frank's Class A",
-    "Students" : 44 ,
-    "Start" : "14-Oct-2021",
-    "End": "20-Oct-2022",
-    'starimage' : "./Assets/favourite.svg" 
-}];
-
-    
-  
-const data_string = JSON.stringify(jsonDataArray);
-const objects = JSON.parse(data_string);
-// console.log(objects.length);
-let cardContainer = document.getElementById('card_grid');
-for (let i = 0; i < objects.length; i++) {
+function process(jsonDataArray){
+  const data_string = JSON.stringify(jsonDataArray);
+  const objects = JSON.parse(data_string);
+  let cardContainer = document.getElementById('card_grid');
+  for (let i = 0; i < objects.length; i++) {
     let jsonData = objects[i];
     let card = document.createElement("div");
     card.classList.add("card");
@@ -149,7 +96,7 @@ for (let i = 0; i < objects.length; i++) {
     reports.src = "./Assets/reports.svg";
     reports.alt = "reports SVG";
     card_footer.appendChild(reports);
-
+  }
 }
 {/* <div class="card_footer">
 //       <img src="./Assets/preview.svg" />
