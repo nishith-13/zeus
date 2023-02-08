@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Google Fonts Pre Connect -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Fonts Links (Roboto 400, 500 and 700 included) -->
 
     <!-- CSS Files Links -->
     <link rel="stylesheet" href="style.css" />
@@ -26,7 +20,7 @@
       </div>
       <div class="navbaar">
         <a href="#" class="selected desktop_only">DASHBOARD </a>
-        <a href="#" class="desktop-only">Content </a>
+        <a href="#" class="desktop_only">CONTENT </a>
         <a href="#" class="desktop_only">USERS </a>
         <a href="#" class="desktop_only">REPORTS </a>
         <a href="#" class="desktop_only"> ADMIN </a>
@@ -51,16 +45,19 @@
 
     <main>
       <div class="toggle_category">
-        <div class="courses"><img src="./Assets/courses.svg" />Courses</div>
-        <div class="classes"><img src="./Assets/classes.svg" />Classes</div>
+        <div class="courses"><img src="./Assets/courses.svg" /> 4 Courses</div>
+        <div class="classes"><img src="./Assets/classes.svg" /> 4 Classes</div>
       </div>
       <div class="info_filter">
         <p>Showing 4 of 4 courses</p>
-        <p>
-          Sort By:
-          <span> Course Name <img src="./Assets/arrow-down.svg" /> </span>
+        <div class="dropdown">
+          <label for="sort-type">Sort By:</label>
+          <select name="sort-type" id="sort-type">
+            <option value="course-name">Course Name</option>
+            <option value="course-name">Course Date</option>
+          </select>
           <img src="./Assets/sort.svg" />
-        </p>
+        </div>
       </div>
       <hr />
       <div class="card_grid" id="card_grid">

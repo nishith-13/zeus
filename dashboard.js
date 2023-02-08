@@ -33,16 +33,10 @@ function process(jsonDataArray){
     title.innerText = jsonData.Title;
     card_heading.appendChild(title);
 
-    let star = document.createElement("button");
-    star.setAttribute("class", "favourite");
-    let originalcolor = star.style.backgroundColor;
-    star.addEventListener("click", function() {
-        if (star.style.backgroundColor === originalcolor) {
-          star.style.backgroundColor = "#EEEEEE";
-        } else {
-          star.style.backgroundColor = originalcolor;
-        }
-      });
+    let star = document.createElement("img");
+    star.setAttribute("class","favourite");
+    star.setAttribute("src","/assets/favourite.svg");
+    star.setAttribute("alt","favourite icon");
     card_heading.appendChild(star);
 
     let subjectGrade = document.createElement("small");
@@ -98,12 +92,12 @@ function process(jsonDataArray){
     card_footer.appendChild(reports);
   }
 }
-{/* <div class="card_footer">
+/* <div class="card_footer">
 //       <img src="./Assets/preview.svg" />
 //       <img src="./Assets/manage course.svg" />
 //       <img src="./Assets/grade submissions.svg" />
 //       <img src="./Assets/reports.svg" />
-//     </div> */}
+//     </div> */
 // `<div class="card">
 //     <div class="card_upper">
 //       <img src=`+objects[object].image+` />

@@ -4,13 +4,15 @@ body {
   margin: 0;
   background-color: #eeeeee;
   font-family: Quicksand;
-  font: normal normal medium 24px/28px Quicksand;
+  font-size: 1.5rem;
+  font-weight: normal;
 }
 header {
   background: url(./Assets/header\ pattern\ image.png);
   background-color: #25313f;
   background-blend-mode: multiply;
   display: flex;
+  height: 3.5rem;
   justify-content: space-between;
   .logo_header {
     padding: 0.5rem;
@@ -21,23 +23,28 @@ header {
   display: grid;
   grid-template-columns: repeat(8, 0.2fr);
   gap: 2rem;
+  font-size: 0.875rem;
+  font-weight: normal;
   align-items: center;
   margin-right: 1.7rem;
+  a {
+    padding: 0.99rem 0;
+  }
   .badge {
-    letter-spacing: -0.5px;
+    letter-spacing: -0.031rem;
     border-radius: 100%;
     background-color: #2a7ff3;
-    width: 17px;
+    width: 1.063rem;
     display: block;
     color: white;
     position: absolute;
     top: 8px;
-    transform: translateX(10px);
+    transform: translateX(0.625rem);
   }
 
   .selected {
     color: #eeeeee;
-    border-bottom: 2px solid #eeeeee;
+    border-bottom: 0.21rem solid #eeeeee;
   }
   .hamburger {
     display: none;
@@ -46,7 +53,7 @@ header {
 
 a:-webkit-any-link {
   text-align: center;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.044rem;
   color: #3fd28b;
   text-decoration: none;
   height: max-content;
@@ -57,10 +64,10 @@ a:-webkit-any-link {
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-items: center;
-  margin: 24px;
+  margin: 1.5rem;
   background-color: #8ddc97;
-  border-radius: 2px;
-  > div {
+  border-radius: 0.126rem;
+  div {
     display: flex;
     align-items: center;
     padding-top: 0.6rem;
@@ -69,61 +76,63 @@ a:-webkit-any-link {
     justify-content: center;
   }
   .courses {
-    border-bottom: 4px solid #222222;
+    border-bottom: 0.25rem solid #222222;
   }
 }
 
 .info_filter {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  margin-left: 24px;
-  margin-right: 24px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   p {
     color: #686868;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: medium;
-    span {
-      display: inline-flex;
-      align-items: center;
-      border-bottom: 1px solid rgb(0, 0, 0, 0.12);
-      color: #222222;
-      font-size: 16px;
-    }
+  }
+}
+.dropdown {
+  display: flex;
+  label {
+    height: 15px;
+    width: 100px;
+    // margin-right: 30px;
+    font-size: 1rem;
+  }
+  select {
+    background-color: transparent;
+    padding-right: 3.375rem;
+    padding-bottom: 0.375rem;
+    border-color: #666666;
+  }
+  img {
+    margin-left: 1rem;
+    margin-bottom: 0.75rem;
   }
 }
 
 hr {
   color: #000000;
   opacity: 0.12;
-  margin-left: 24px;
-  margin-right: 24px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .card {
   background-color: #ffffff;
-  padding: 24px 0px;
+  padding: 1.5rem 0;
   .card_heading {
     display: flex;
     justify-content: space-between;
-    > h3 {
+    h3 {
       margin: 0;
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: medium;
     }
     .favourite {
-      background-color: #edc900;
-      clip-path: polygon(
-        50% 0%,
-        61% 35%,
-        98% 35%,
-        68% 57%,
-        79% 91%,
-        50% 70%,
-        21% 91%,
-        32% 57%,
-        2% 35%,
-        39% 35%
-      );
+      background-image: url("/Assets/favourite.svg");
       width: 20px;
       height: 24px;
     }
@@ -131,7 +140,8 @@ hr {
 }
 .card_grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(29.75rem, 0.25fr));
+  justify-content: center;
   grid-template-rows: repeat(2, 1fr);
   grid-gap: 24px;
   padding: 0px 24px;
@@ -141,13 +151,13 @@ hr {
   }
   .card_upper {
     display: grid;
-    grid-template-columns: 25% 70%;
+    grid-template-columns: 35% 65%;
     padding: 0px 24px;
     .card_upper_right {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      margin-bottom: 42px;
+      margin-bottom: 2.625rem;
     }
   }
 }
@@ -174,7 +184,7 @@ select {
   font-weight: medium;
   letter-spacing: 0px;
 }
-> p {
+p {
   margin: 0;
 }
 
@@ -197,16 +207,22 @@ footer {
     margin-bottom: 0.5rem;
     color: #1f7a54;
     font-weight: 600;
+    font-size: 0.875rem;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 972px) {
   .card_grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(29.75rem, 0.5fr));
     grid-template-rows: 25% 25%;
     grid-gap: 24px;
     padding: 0px 24px;
     margin-bottom: 24px;
+    justify-content: center;
+  }
+  .card {
+    max-width: 35.688rem;
+    max-height: 246 rem;
   }
   .desktop_only {
     display: none;
