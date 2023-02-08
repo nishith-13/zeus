@@ -142,7 +142,7 @@ hr {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(29.75rem, 0.25fr));
   justify-content: center;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: auto;
   grid-gap: 24px;
   padding: 0px 24px;
   .card_footer {
@@ -214,15 +214,16 @@ footer {
   .card_grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(29.75rem, 0.5fr));
-    grid-template-rows: 25% 25%;
+    grid-template-rows: auto;
     grid-gap: 24px;
-    padding: 0px 24px;
+    //padding: 0px 24px;
     margin-bottom: 24px;
     justify-content: center;
   }
   .card {
     max-width: 35.688rem;
-    max-height: 246 rem;
+    max-height: 246rem rem;
+    padding-bottom: 24px 0;
   }
   .desktop_only {
     display: none;
