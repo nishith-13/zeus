@@ -16,37 +16,45 @@
   <body>
     <header>
       <div class="header">
-        <img class="logo_header" src="./Assets/logo used in header.svg" />
+        <img class="logo_header" src="/Assets/logo used in header.svg" />
       </div>
       <div class="navbaar">
-        <a href="#" class="selected desktop_only">DASHBOARD </a>
-        <a href="#" class="desktop_only">CONTENT </a>
-        <a href="#" class="desktop_only">USERS </a>
-        <a href="#" class="desktop_only">REPORTS </a>
-        <a href="#" class="desktop_only"> ADMIN </a>
-        <a href="#"
-          ><img src="./Assets/alerts.svg" /><span class="badge">2</span></a
-        >
-        <a href="#"
-          ><img src="./Assets/announcements.svg" /><span class="badge"
-            >1</span
-          ></a
-        >
-        <a href="#"
-          ><img src="./Assets/account_circle.svg" /><span class="badge"
-            >T</span
-          ></a
-        >
-        <a href="#" class="hamburger"
-          ><img src="./Assets/hamburger-menu.svg"
-        /></a>
+        <div class="desktop_only">
+          <a href="#" class="selected">DASHBOARD </a>
+          <a href="#" id="content">CONTENT </a>
+          <a href="#">USERS </a>
+          <a href="#">REPORTS </a>
+          <a href="#"> ADMIN </a>
+        </div>
+        <div class="permanant">
+          <a href="#"><img id="alert" src="/Assets/alerts.svg" /></a>
+
+          <a href="#"
+            ><img id="announcement" src="/Assets/announcements.svg" />
+          </a>
+          <a href="#"><img src="/Assets/account_circle.svg" /> </a>
+        </div>
+        <button href="#" class="hamburger" onclick="show()">
+          <img src="/Assets/hamburger-menu.svg" />
+        </button>
+        <div id="alert_wrapper" class="alert_wrapper">
+          <div id="alert_list" class="alert-list"></div>
+          <div class="btn">SHOW ALL</div>
+        </div>
+
+        <div id="announcement_wrapper" class="announcement_wrapper">
+          <div id="announcement_list" class="announcement-list"></div>
+          <div class="announcement_btn">
+            <span>SHOW ALL</span>&nbsp;|&nbsp;<span>CREATE NEW</span>
+          </div>
+        </div>
       </div>
     </header>
 
     <main>
       <div class="toggle_category">
-        <div class="courses"><img src="./Assets/courses.svg" /> 4 Courses</div>
-        <div class="classes"><img src="./Assets/classes.svg" /> 4 Classes</div>
+        <div class="courses"><img src="/Assets/courses.svg" /> 4 Courses</div>
+        <div class="classes"><img src="/Assets/classes.svg" /> 4 Classes</div>
       </div>
       <div class="info_filter">
         <p>Showing 4 of 4 courses</p>
@@ -56,20 +64,20 @@
             <option value="course-name">Course Name</option>
             <option value="course-name">Course Date</option>
           </select>
-          <img src="./Assets/sort.svg" />
+          <img src="/Assets/sort.svg" />
         </div>
       </div>
       <hr />
       <div class="card_grid" id="card_grid">
-        <script type="text/javascript" src="dashboard.js"></script>
+        <script type="text/javascript" src="dash.js"></script>
       </div>
     </main>
 
     <footer>
       <div class="upper_footer">
-        <a>About </a>
+        <a href="#">About </a>
         <span>&nbsp;|&nbsp;</span>
-        <a> Contact Us</a>
+        <a href="#"> Contact Us</a>
       </div>
       <div class="lower_footer">
         <img src="/Assets/logo used in footer.svg" />
