@@ -5,12 +5,41 @@ fetch("./dashboard.json")
 function process(jsonDataArray): void {
   const data_string: string = JSON.stringify(jsonDataArray);
   const objects: JSON = JSON.parse(data_string);
+  let favourite = "./Assets/favourite.svg";
+
+  let total_course_category = document.getElementById(
+    "total_course_category"
+  ) as HTMLSpanElement;
+  total_course_category.innerHTML =
+    "" + Object.keys(objects).length + " courses";
+
+  let total_courses = document.getElementById(
+    "total_courses"
+  ) as HTMLParagraphElement;
+  total_courses.innerHTML =
+    "Showing " +
+    Object.keys(objects).length +
+    " out of " +
+    Object.keys(objects).length +
+    " Courses";
+
   const cardContainer = document.getElementById("card_grid")!;
   for (let i = 0; i < Object.keys(objects).length; i++) {
     let jsonData = objects[i];
     let card = document.createElement("div");
     card.classList.add("card");
     cardContainer.appendChild(card);
+
+    if (jsonData.hasOwnProperty("is_expired") && jsonData.is_expired) {
+      let expired = document.createElement("span");
+      expired.innerHTML = "EXPIRED";
+      expired.setAttribute(
+        "style",
+        "display: block;width: fit-content;max-height: 18px;background-color: #FFE4E6;font-weight: normal;color: #D80000;font-size: 10px;padding: 4px 7px 2px 5px; margin-bottom: 6px;text-align: left;"
+      );
+      card.appendChild(expired);
+      card.setAttribute("style", "padding: 0 0 9px 0");
+    }
 
     let card_upper = document.createElement("div");
     card.appendChild(card_upper);
@@ -33,10 +62,24 @@ function process(jsonDataArray): void {
     title.innerText = jsonData.Title;
     card_heading.appendChild(title);
 
+    if (!jsonData.isfavourite || !jsonData.hasOwnProperty("isfavourite")) {
+      favourite = "./Assets/Empty_Star.svg";
+    }
     let star = document.createElement("img");
+
+    star.src = favourite;
     star.setAttribute("class", "favourite");
-    star.setAttribute("src", "/assets/favourite.svg");
-    star.setAttribute("alt", "favourite icon");
+    card_heading.appendChild(star);
+    star.addEventListener("click", () => {
+      jsonData.isfavourite = !jsonData.isfavourite;
+      if (favourite === "./Assets/favourite.svg") {
+        star.src = "./Assets/Empty_Star.svg";
+        favourite = "./Assets/Empty_Star.svg";
+      } else {
+        star.src = "./Assets/favourite.svg";
+        favourite = "./Assets/favourite.svg";
+      }
+    });
     card_heading.appendChild(star);
 
     let subjectGrade = document.createElement("small");
@@ -88,21 +131,33 @@ function process(jsonDataArray): void {
     let preview = document.createElement("img");
     preview.src = "./Assets/preview.svg";
     preview.alt = "Preview SVG";
+    if (!jsonData.preview) {
+      preview.classList.add("faded");
+    }
     card_footer.appendChild(preview);
 
     let course = document.createElement("img");
     course.src = "./Assets/manage course.svg";
     course.alt = "manage course SVG";
+    if (!jsonData.manage_course) {
+      course.classList.add("faded");
+    }
     card_footer.appendChild(course);
 
     let grade = document.createElement("img");
     grade.src = "./Assets/grade submissions.svg";
     grade.alt = "grade submissions SVG";
+    if (!jsonData.grade_submission) {
+      grade.classList.add("faded");
+    }
     card_footer.appendChild(grade);
 
     let reports = document.createElement("img");
     reports.src = "./Assets/reports.svg";
     reports.alt = "reports SVG";
+    if (!jsonData.reports) {
+      reports.classList.add("faded");
+    }
     card_footer.appendChild(reports);
   }
 }
@@ -269,11 +324,34 @@ function showAnnon(jsonAnnouncementArray) {
   }
 }
 
+const hamburger = document.getElementById("hamburger") as HTMLDivElement;
+const hamburger_menu = document.getElementById(
+  "hamburger-menu"
+) as HTMLDivElement;
+hamburger.addEventListener("mouseover", () => {
+  const menu = document.querySelector(".nav-items") as HTMLDivElement;
+  menu.classList.add("show");
+});
+function removehammenu() {
+  setTimeout(() => {
+    var menu = document.querySelector(".nav-items") as HTMLDListElement;
+    menu.classList.remove("show");
+  }, 400);
+}
+hamburger_menu.addEventListener("mouseleave", removehammenu);
+
+hamburger.addEventListener("mouseleave", () => {
+  setTimeout(() => {
+    if (!document.querySelector(".hamburger-menu:hover")) {
+      removehammenu();
+    }
+  }, 400);
+});
+
 let alert2 = document.getElementById("alert") as HTMLImageElement;
 alert2.addEventListener("mouseover", () => {
   alert2.style.filter = "brightness(0)invert(1)";
   const menu = document.querySelector(".alert_wrapper") as HTMLDivElement;
-  // menu.style.display = "block";
   menu.classList.add("show_block");
   const alert_list = document.querySelector(".alert-list") as HTMLDivElement;
   alert_list.classList.add("show");
@@ -281,12 +359,11 @@ alert2.addEventListener("mouseover", () => {
 function removealertmenu() {
   setTimeout(() => {
     const menu = document.querySelector(".alert_wrapper") as HTMLDivElement;
-    // menu.style.display = "none";
     alert2.style.filter = "none";
     menu.classList.remove("show_block");
     const alert_list = document.querySelector(".alert-list") as HTMLDivElement;
     alert_list.classList.remove("show");
-  }, 100);
+  }, 400);
 }
 
 let alert_wrapper = document.getElementById("alert_wrapper") as HTMLDivElement;
@@ -297,7 +374,7 @@ alert2.addEventListener("mouseleave", () => {
     if (!document.querySelector(".alert_wrapper:hover")) {
       removealertmenu();
     }
-  }, 100);
+  }, 400);
 });
 
 let announcement = document.getElementById("announcement") as HTMLImageElement;
@@ -306,7 +383,6 @@ announcement.addEventListener("mouseover", () => {
   const menu = document.querySelector(
     ".announcement_wrapper"
   ) as HTMLDivElement;
-  // menu.style.display = "block";
   menu.classList.add("show_block");
   const announcement_list = document.querySelector(
     ".announcement-list"
@@ -318,7 +394,6 @@ function remvoveannouncementmenu() {
     const menu = document.querySelector(
       ".announcement_wrapper"
     ) as HTMLDivElement;
-    // menu.style.display = "none";
     announcement.style.filter = "none";
     menu.classList.remove("show_block");
     const announcement_list = document.querySelector(
@@ -327,7 +402,7 @@ function remvoveannouncementmenu() {
     announcement_list.classList.remove("show");
   }, 400);
 }
-// announcement.addEventListener("click",remvoveannouncementmenu);
+
 let announcement_wrapper = document.getElementById(
   "announcement_wrapper"
 ) as HTMLDivElement;
@@ -338,5 +413,5 @@ announcement.addEventListener("mouseleave", () => {
     if (!document.querySelector(".announcement_wrapper:hover")) {
       remvoveannouncementmenu();
     }
-  }, 100);
+  }, 400);
 });

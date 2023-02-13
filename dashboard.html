@@ -34,9 +34,49 @@
           </a>
           <a href="#"><img src="/Assets/account_circle.svg" /> </a>
         </div>
-        <button href="#" class="hamburger" onclick="show()">
+        <div id="hamburger" class="hamburger">
           <img src="/Assets/hamburger-menu.svg" />
-        </button>
+        </div>
+
+        <div id="hamburger-menu" class="hamburger-menu">
+          <div class="nav-items">
+            <ol>
+              <li>DASHBOARD</li>
+              <li>
+                <span class="with-arrow"
+                  >CONTENT <img src="/Assets/arrow-down.svg"
+                /></span>
+                <ul class="sub-menu">
+                  COURSE CATALOG
+                </ul>
+              </li>
+              <li>
+                <span class="with-arrow"
+                  >USERS <img src="/Assets/arrow-down.svg"
+                /></span>
+                <ul id="u1" class="sub-menu">
+                  USER 1
+                </ul>
+              </li>
+              <li>
+                <span class="with-arrow"
+                  >REPORTS <img src="/Assets/arrow-down.svg"
+                /></span>
+                <ul class="sub-menu">
+                  REPORT 1
+                </ul>
+              </li>
+              <li>
+                <span class="with-arrow"
+                  >ADMIN <img src="/Assets/arrow-down.svg"
+                /></span>
+                <ul class="sub-menu">
+                  ADMIN 1
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
         <div id="alert_wrapper" class="alert_wrapper">
           <div id="alert_list" class="alert-list"></div>
           <div class="btn">SHOW ALL</div>
@@ -53,11 +93,14 @@
 
     <main>
       <div class="toggle_category">
-        <div class="courses"><img src="/Assets/courses.svg" /> 4 Courses</div>
+        <div class="courses">
+          <img src="/Assets/courses.svg" />
+          <span id="total_course_category">4 Courses</span>
+        </div>
         <div class="classes"><img src="/Assets/classes.svg" /> 4 Classes</div>
       </div>
       <div class="info_filter">
-        <p>Showing 4 of 4 courses</p>
+        <p id="total_courses">Showing 4 of 4 courses</p>
         <div class="dropdown">
           <label for="sort-type">Sort By:</label>
           <select name="sort-type" id="sort-type">

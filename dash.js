@@ -4,12 +4,30 @@ fetch("./dashboard.json")
 function process(jsonDataArray) {
     var data_string = JSON.stringify(jsonDataArray);
     var objects = JSON.parse(data_string);
+    var favourite = "./Assets/favourite.svg";
+    var total_course_category = document.getElementById("total_course_category");
+    total_course_category.innerHTML =
+        "" + Object.keys(objects).length + " courses";
+    var total_courses = document.getElementById("total_courses");
+    total_courses.innerHTML =
+        "Showing " +
+            Object.keys(objects).length +
+            " out of " +
+            Object.keys(objects).length +
+            " Courses";
     var cardContainer = document.getElementById("card_grid");
-    for (var i = 0; i < Object.keys(objects).length; i++) {
+    var _loop_1 = function (i) {
         var jsonData = objects[i];
         var card = document.createElement("div");
         card.classList.add("card");
         cardContainer.appendChild(card);
+        if (jsonData.hasOwnProperty("is_expired") && jsonData.is_expired) {
+            var expired = document.createElement("span");
+            expired.innerHTML = "EXPIRED";
+            expired.setAttribute("style", "display: block;width: fit-content;max-height: 18px;background-color: #FFE4E6;font-weight: normal;color: #D80000;font-size: 10px;padding: 4px 7px 2px 5px; margin-bottom: 6px;text-align: left;");
+            card.appendChild(expired);
+            card.setAttribute("style", "padding: 0 0 9px 0");
+        }
         var card_upper = document.createElement("div");
         card.appendChild(card_upper);
         card_upper.classList.add("card_upper");
@@ -26,10 +44,24 @@ function process(jsonDataArray) {
         var title = document.createElement("h3");
         title.innerText = jsonData.Title;
         card_heading.appendChild(title);
+        if (!jsonData.isfavourite || !jsonData.hasOwnProperty("isfavourite")) {
+            favourite = "./Assets/Empty_Star.svg";
+        }
         var star = document.createElement("img");
+        star.src = favourite;
         star.setAttribute("class", "favourite");
-        star.setAttribute("src", "/assets/favourite.svg");
-        star.setAttribute("alt", "favourite icon");
+        card_heading.appendChild(star);
+        star.addEventListener("click", function () {
+            jsonData.isfavourite = !jsonData.isfavourite;
+            if (favourite === "./Assets/favourite.svg") {
+                star.src = "./Assets/Empty_Star.svg";
+                favourite = "./Assets/Empty_Star.svg";
+            }
+            else {
+                star.src = "./Assets/favourite.svg";
+                favourite = "./Assets/favourite.svg";
+            }
+        });
         card_heading.appendChild(star);
         var subjectGrade = document.createElement("small");
         subjectGrade.classList.add("text-muted");
@@ -74,19 +106,34 @@ function process(jsonDataArray) {
         var preview = document.createElement("img");
         preview.src = "./Assets/preview.svg";
         preview.alt = "Preview SVG";
+        if (!jsonData.preview) {
+            preview.classList.add("faded");
+        }
         card_footer.appendChild(preview);
         var course = document.createElement("img");
         course.src = "./Assets/manage course.svg";
         course.alt = "manage course SVG";
+        if (!jsonData.manage_course) {
+            course.classList.add("faded");
+        }
         card_footer.appendChild(course);
         var grade = document.createElement("img");
         grade.src = "./Assets/grade submissions.svg";
         grade.alt = "grade submissions SVG";
+        if (!jsonData.grade_submission) {
+            grade.classList.add("faded");
+        }
         card_footer.appendChild(grade);
         var reports = document.createElement("img");
         reports.src = "./Assets/reports.svg";
         reports.alt = "reports SVG";
+        if (!jsonData.reports) {
+            reports.classList.add("faded");
+        }
         card_footer.appendChild(reports);
+    };
+    for (var i = 0; i < Object.keys(objects).length; i++) {
+        _loop_1(i);
     }
 }
 function show() {
@@ -227,11 +274,30 @@ function showAnnon(jsonAnnouncementArray) {
         pa_footer.appendChild(date_time);
     }
 }
+var hamburger = document.getElementById("hamburger");
+var hamburger_menu = document.getElementById("hamburger-menu");
+hamburger.addEventListener("mouseover", function () {
+    var menu = document.querySelector(".nav-items");
+    menu.classList.add("show");
+});
+function removehammenu() {
+    setTimeout(function () {
+        var menu = document.querySelector(".nav-items");
+        menu.classList.remove("show");
+    }, 400);
+}
+hamburger_menu.addEventListener("mouseleave", removehammenu);
+hamburger.addEventListener("mouseleave", function () {
+    setTimeout(function () {
+        if (!document.querySelector(".hamburger-menu:hover")) {
+            removehammenu();
+        }
+    }, 400);
+});
 var alert2 = document.getElementById("alert");
 alert2.addEventListener("mouseover", function () {
     alert2.style.filter = "brightness(0)invert(1)";
     var menu = document.querySelector(".alert_wrapper");
-    // menu.style.display = "block";
     menu.classList.add("show_block");
     var alert_list = document.querySelector(".alert-list");
     alert_list.classList.add("show");
@@ -239,12 +305,11 @@ alert2.addEventListener("mouseover", function () {
 function removealertmenu() {
     setTimeout(function () {
         var menu = document.querySelector(".alert_wrapper");
-        // menu.style.display = "none";
         alert2.style.filter = "none";
         menu.classList.remove("show_block");
         var alert_list = document.querySelector(".alert-list");
         alert_list.classList.remove("show");
-    }, 100);
+    }, 400);
 }
 var alert_wrapper = document.getElementById("alert_wrapper");
 alert_wrapper.addEventListener("mouseleave", removealertmenu);
@@ -253,13 +318,12 @@ alert2.addEventListener("mouseleave", function () {
         if (!document.querySelector(".alert_wrapper:hover")) {
             removealertmenu();
         }
-    }, 100);
+    }, 400);
 });
 var announcement = document.getElementById("announcement");
 announcement.addEventListener("mouseover", function () {
     announcement.style.filter = "brightness(0)invert(1)";
     var menu = document.querySelector(".announcement_wrapper");
-    // menu.style.display = "block";
     menu.classList.add("show_block");
     var announcement_list = document.querySelector(".announcement-list");
     announcement_list.classList.add("show");
@@ -267,14 +331,12 @@ announcement.addEventListener("mouseover", function () {
 function remvoveannouncementmenu() {
     setTimeout(function () {
         var menu = document.querySelector(".announcement_wrapper");
-        // menu.style.display = "none";
         announcement.style.filter = "none";
         menu.classList.remove("show_block");
         var announcement_list = document.querySelector(".announcement-list");
         announcement_list.classList.remove("show");
     }, 400);
 }
-// announcement.addEventListener("click",remvoveannouncementmenu);
 var announcement_wrapper = document.getElementById("announcement_wrapper");
 announcement_wrapper.addEventListener("mouseleave", remvoveannouncementmenu);
 announcement.addEventListener("mouseleave", function () {
@@ -282,5 +344,5 @@ announcement.addEventListener("mouseleave", function () {
         if (!document.querySelector(".announcement_wrapper:hover")) {
             remvoveannouncementmenu();
         }
-    }, 100);
+    }, 400);
 });
