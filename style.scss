@@ -9,6 +9,14 @@
     opacity: 1;
   }
 }
+@keyframes easy-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 body {
   margin: 0;
@@ -429,6 +437,11 @@ footer {
   z-index: 5;
   padding: 0;
   animation-name: easy;
+  animation-duration: 1s;
+}
+.reverse {
+  display: block;
+  animation-name: easy-out;
   animation-duration: 1s;
 }
 .pa_header {

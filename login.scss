@@ -52,6 +52,7 @@ body {
             color: #1f7a54;
             background: transparent;
             border: none;
+            cursor: pointer;
           }
         }
         .card_body {
@@ -142,6 +143,7 @@ select {
   font-size: 0.875rem;
   text-decoration: none;
   margin-top: 0.5rem;
+  cursor: pointer;
 }
 .Remember_ME {
   margin-top: 3.375rem;
@@ -162,6 +164,7 @@ select {
   box-shadow: 0 0.188rem 0.313rem #0000003d;
   opacity: 1;
   margin: 2.125rem 8.5rem 1.5rem 8.5rem;
+  cursor: pointer;
 }
 
 footer {

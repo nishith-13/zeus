@@ -2,9 +2,7 @@ fetch("./dashboard.json")
   .then((response) => response.json())
   .then((json) => process(json));
 
-function process(jsonDataArray): void {
-  const data_string: string = JSON.stringify(jsonDataArray);
-  const objects: JSON = JSON.parse(data_string);
+function process(objects): void {
   let favourite = "./Assets/favourite.svg";
 
   let total_course_category = document.getElementById(
@@ -90,15 +88,9 @@ function process(jsonDataArray): void {
 
     let UnitsLesson = document.createElement("small");
     UnitsLesson.classList.add("text-muted");
-    UnitsLesson.innerHTML =
-      "<b>" +
-      jsonData.Units +
-      "</b>" +
-      " Units &nbsp;<b>" +
-      jsonData.Lessons +
-      "</b> Lessons&nbsp;<b>" +
-      jsonData.Topics +
-      "</b> Topics";
+    UnitsLesson.innerHTML = `<b> ${jsonData.Units} </b>
+       Units &nbsp;<b> ${jsonData.Lessons} </b> 
+       Lessons&nbsp;<b> ${jsonData.Topics} +</b> Topics`;
     card_upper_right.appendChild(UnitsLesson);
 
     let select = document.createElement("select");
@@ -112,14 +104,8 @@ function process(jsonDataArray): void {
 
     let StudentDates = document.createElement("small");
     StudentDates.classList.add("text-muted");
-    StudentDates.innerHTML =
-      "<b>" +
-      jsonData.Students +
-      "</b>" +
-      " Students &nbsp; | &nbsp;" +
-      jsonData.Start +
-      " - " +
-      jsonData.End;
+    StudentDates.innerHTML = `<b> ${jsonData.Students} </b>
+      Students &nbsp; | &nbsp; ${jsonData.Start} - ${jsonData.End}`;
     card_upper_right.appendChild(StudentDates);
 
     card.appendChild(document.createElement("hr"));
@@ -162,41 +148,11 @@ function process(jsonDataArray): void {
   }
 }
 
-function show() {
-  let d = document.querySelector(".desktop_only")!;
-  let e = document.querySelector(".selected")!;
-  if (d.id === "hide") {
-    e.setAttribute("id", "selected");
-    addButton();
-    d.setAttribute("id", "show");
-  } else {
-    d.setAttribute("id", "hide");
-    e.removeAttribute("id");
-    removeButton();
-  }
-}
-
-function addButton() {
-  let content = document.getElementById("content");
-  let image = document.createElement("img");
-  image.setAttribute("src", "Assets/arrow-down.svg");
-  let b = document.createElement("button");
-  b.setAttribute("id", "content-button");
-  b.appendChild(image);
-  content?.appendChild(b);
-}
-function removeButton() {
-  let content = document.getElementById("content-button");
-  content?.remove();
-}
-
 fetch("/alert.json")
   .then((response) => response.json())
   .then((json) => showAlert(json));
-function showAlert(jsonAlertArray) {
-  const alert_string = JSON.stringify(jsonAlertArray);
-  const alert_objects = JSON.parse(alert_string);
-  var alert_list = document.getElementById("alert_list") as HTMLDivElement;
+function showAlert(alert_objects) {
+  let alert_list = document.getElementById("alert_list") as HTMLDivElement;
   const alert_img = "/Assets/alerts.svg";
   for (const alert of alert_objects) {
     const li = document.createElement("li");
@@ -249,10 +205,8 @@ fetch("/annon.json")
   .then((response) => response.json())
   .then((json) => showAnnon(json));
 
-function showAnnon(jsonAnnouncementArray) {
-  const announcement_string = JSON.stringify(jsonAnnouncementArray);
-  const announcement_objects = JSON.parse(announcement_string);
-  var announcement_list = document.getElementById(
+function showAnnon(announcement_objects) {
+  let announcement_list = document.getElementById(
     "announcement_list"
   ) as HTMLDivElement;
   for (const announcement of announcement_objects) {
@@ -334,8 +288,12 @@ hamburger.addEventListener("mouseover", () => {
 });
 function removehammenu() {
   setTimeout(() => {
-    var menu = document.querySelector(".nav-items") as HTMLDListElement;
+    let menu = document.querySelector(".nav-items") as HTMLDListElement;
     menu.classList.remove("show");
+    menu.classList.add("reverse");
+    setTimeout(() => {
+      menu.classList.remove("reverse");
+    }, 1000);
   }, 400);
 }
 hamburger_menu.addEventListener("mouseleave", removehammenu);
@@ -358,24 +316,26 @@ alert2.addEventListener("mouseover", () => {
 });
 function removealertmenu() {
   setTimeout(() => {
-    const menu = document.querySelector(".alert_wrapper") as HTMLDivElement;
-    alert2.style.filter = "none";
-    menu.classList.remove("show_block");
-    const alert_list = document.querySelector(".alert-list") as HTMLDivElement;
-    alert_list.classList.remove("show");
+    if (!document.querySelector(".alert_wrapper:hover")) {
+      const menu = document.querySelector(".alert_wrapper") as HTMLDivElement;
+      alert2.style.filter = "none";
+      menu.classList.remove("show_block");
+      const alert_list = document.querySelector(
+        ".alert-list"
+      ) as HTMLDivElement;
+      menu.classList.remove("show");
+      menu.classList.add("reverse");
+      setTimeout(() => {
+        menu.classList.remove("reverse");
+      }, 1000);
+    }
   }, 400);
 }
 
 let alert_wrapper = document.getElementById("alert_wrapper") as HTMLDivElement;
 alert_wrapper.addEventListener("mouseleave", removealertmenu);
 
-alert2.addEventListener("mouseleave", () => {
-  setTimeout(() => {
-    if (!document.querySelector(".alert_wrapper:hover")) {
-      removealertmenu();
-    }
-  }, 400);
-});
+alert2.addEventListener("mouseleave", removealertmenu);
 
 let announcement = document.getElementById("announcement") as HTMLImageElement;
 announcement.addEventListener("mouseover", () => {
@@ -399,7 +359,11 @@ function remvoveannouncementmenu() {
     const announcement_list = document.querySelector(
       ".announcement-list"
     ) as HTMLDivElement;
-    announcement_list.classList.remove("show");
+    menu.classList.remove("show");
+    menu.classList.add("reverse");
+    setTimeout(() => {
+      menu.classList.remove("reverse");
+    }, 1000);
   }, 400);
 }
 

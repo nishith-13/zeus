@@ -1,9 +1,7 @@
 fetch("./dashboard.json")
     .then(function (response) { return response.json(); })
     .then(function (json) { return process(json); });
-function process(jsonDataArray) {
-    var data_string = JSON.stringify(jsonDataArray);
-    var objects = JSON.parse(data_string);
+function process(objects) {
     var favourite = "./Assets/favourite.svg";
     var total_course_category = document.getElementById("total_course_category");
     total_course_category.innerHTML =
@@ -70,15 +68,7 @@ function process(jsonDataArray) {
         card_upper_right.appendChild(subjectGrade);
         var UnitsLesson = document.createElement("small");
         UnitsLesson.classList.add("text-muted");
-        UnitsLesson.innerHTML =
-            "<b>" +
-                jsonData.Units +
-                "</b>" +
-                " Units &nbsp;<b>" +
-                jsonData.Lessons +
-                "</b> Lessons&nbsp;<b>" +
-                jsonData.Topics +
-                "</b> Topics";
+        UnitsLesson.innerHTML = "<b> ".concat(jsonData.Units, " </b>\n       Units &nbsp;<b> ").concat(jsonData.Lessons, " </b> \n       Lessons&nbsp;<b> ").concat(jsonData.Topics, " +</b> Topics");
         card_upper_right.appendChild(UnitsLesson);
         var select = document.createElement("select");
         select.setAttribute("id", "classes");
@@ -90,14 +80,7 @@ function process(jsonDataArray) {
         select.appendChild(option);
         var StudentDates = document.createElement("small");
         StudentDates.classList.add("text-muted");
-        StudentDates.innerHTML =
-            "<b>" +
-                jsonData.Students +
-                "</b>" +
-                " Students &nbsp; | &nbsp;" +
-                jsonData.Start +
-                " - " +
-                jsonData.End;
+        StudentDates.innerHTML = "<b> ".concat(jsonData.Students, " </b>\n      Students &nbsp; | &nbsp; ").concat(jsonData.Start, " - ").concat(jsonData.End);
         card_upper_right.appendChild(StudentDates);
         card.appendChild(document.createElement("hr"));
         var card_footer = document.createElement("div");
@@ -136,39 +119,10 @@ function process(jsonDataArray) {
         _loop_1(i);
     }
 }
-function show() {
-    var d = document.querySelector(".desktop_only");
-    var e = document.querySelector(".selected");
-    if (d.id === "hide") {
-        e.setAttribute("id", "selected");
-        addButton();
-        d.setAttribute("id", "show");
-    }
-    else {
-        d.setAttribute("id", "hide");
-        e.removeAttribute("id");
-        removeButton();
-    }
-}
-function addButton() {
-    var content = document.getElementById("content");
-    var image = document.createElement("img");
-    image.setAttribute("src", "Assets/arrow-down.svg");
-    var b = document.createElement("button");
-    b.setAttribute("id", "content-button");
-    b.appendChild(image);
-    content === null || content === void 0 ? void 0 : content.appendChild(b);
-}
-function removeButton() {
-    var content = document.getElementById("content-button");
-    content === null || content === void 0 ? void 0 : content.remove();
-}
 fetch("/alert.json")
     .then(function (response) { return response.json(); })
     .then(function (json) { return showAlert(json); });
-function showAlert(jsonAlertArray) {
-    var alert_string = JSON.stringify(jsonAlertArray);
-    var alert_objects = JSON.parse(alert_string);
+function showAlert(alert_objects) {
     var alert_list = document.getElementById("alert_list");
     var alert_img = "/Assets/alerts.svg";
     for (var _i = 0, alert_objects_1 = alert_objects; _i < alert_objects_1.length; _i++) {
@@ -215,9 +169,7 @@ function showAlert(jsonAlertArray) {
 fetch("/annon.json")
     .then(function (response) { return response.json(); })
     .then(function (json) { return showAnnon(json); });
-function showAnnon(jsonAnnouncementArray) {
-    var announcement_string = JSON.stringify(jsonAnnouncementArray);
-    var announcement_objects = JSON.parse(announcement_string);
+function showAnnon(announcement_objects) {
     var announcement_list = document.getElementById("announcement_list");
     for (var _i = 0, announcement_objects_1 = announcement_objects; _i < announcement_objects_1.length; _i++) {
         var announcement_1 = announcement_objects_1[_i];
@@ -284,6 +236,10 @@ function removehammenu() {
     setTimeout(function () {
         var menu = document.querySelector(".nav-items");
         menu.classList.remove("show");
+        menu.classList.add("reverse");
+        setTimeout(function () {
+            menu.classList.remove("reverse");
+        }, 1000);
     }, 400);
 }
 hamburger_menu.addEventListener("mouseleave", removehammenu);
@@ -304,22 +260,22 @@ alert2.addEventListener("mouseover", function () {
 });
 function removealertmenu() {
     setTimeout(function () {
-        var menu = document.querySelector(".alert_wrapper");
-        alert2.style.filter = "none";
-        menu.classList.remove("show_block");
-        var alert_list = document.querySelector(".alert-list");
-        alert_list.classList.remove("show");
+        if (!document.querySelector(".alert_wrapper:hover")) {
+            var menu_1 = document.querySelector(".alert_wrapper");
+            alert2.style.filter = "none";
+            menu_1.classList.remove("show_block");
+            var alert_list = document.querySelector(".alert-list");
+            menu_1.classList.remove("show");
+            menu_1.classList.add("reverse");
+            setTimeout(function () {
+                menu_1.classList.remove("reverse");
+            }, 1000);
+        }
     }, 400);
 }
 var alert_wrapper = document.getElementById("alert_wrapper");
 alert_wrapper.addEventListener("mouseleave", removealertmenu);
-alert2.addEventListener("mouseleave", function () {
-    setTimeout(function () {
-        if (!document.querySelector(".alert_wrapper:hover")) {
-            removealertmenu();
-        }
-    }, 400);
-});
+alert2.addEventListener("mouseleave", removealertmenu);
 var announcement = document.getElementById("announcement");
 announcement.addEventListener("mouseover", function () {
     announcement.style.filter = "brightness(0)invert(1)";
@@ -334,7 +290,11 @@ function remvoveannouncementmenu() {
         announcement.style.filter = "none";
         menu.classList.remove("show_block");
         var announcement_list = document.querySelector(".announcement-list");
-        announcement_list.classList.remove("show");
+        menu.classList.remove("show");
+        menu.classList.add("reverse");
+        setTimeout(function () {
+            menu.classList.remove("reverse");
+        }, 1000);
     }, 400);
 }
 var announcement_wrapper = document.getElementById("announcement_wrapper");

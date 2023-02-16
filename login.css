@@ -81,6 +81,7 @@ body main .card .container .card_header a {
   color: #1f7a54;
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 body main .card .container .card_body {
   display: flex;
@@ -170,6 +171,7 @@ select {
   font-size: 0.875rem;
   text-decoration: none;
   margin-top: 0.5rem;
+  cursor: pointer;
 }
 
 .Remember_ME {
@@ -192,6 +194,7 @@ select {
   box-shadow: 0 0.188rem 0.313rem rgba(0, 0, 0, 0.2392156863);
   opacity: 1;
   margin: 2.125rem 8.5rem 1.5rem 8.5rem;
+  cursor: pointer;
 }
 
 footer {
